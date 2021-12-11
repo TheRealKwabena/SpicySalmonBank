@@ -83,6 +83,7 @@ public class OldMain {
                 "4. Create bank account for a customer." + EOL +
                 "5. Print a specific customer." + EOL +
                 "6. Deposit money" + EOL +
+                "7. Deposit money" + EOL +
                 EOL +
 
                 "Type an option number: ");
@@ -154,6 +155,12 @@ public class OldMain {
                     System.out.print("Enter deposit amount: ");
                     double depositAmount = UserIO.readDouble();
                     customers.depositMoney(SSN, accountNumber, depositAmount);
+                    break;
+                case 7:
+                    System.out.println("You have chosen: Delete bank account.");
+                    System.out.println("What account do you wish to delete? Enter account number: ");
+                    accountNumber = UserIO.readStr();
+                    customers.deleteBankAccount(accountNumber);
                     break;
                 default:
                     System.out.print("Invalid Option. Please try again: ");

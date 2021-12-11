@@ -1,19 +1,15 @@
 package com.salmon.spicysalmon.controllers;
 
-import com.salmon.spicysalmon.Util;
-import com.salmon.spicysalmon.controllers.CustomerController;
-import com.salmon.spicysalmon.controllers.EmployeeController;
+import com.salmon.spicysalmon.UserIO;
 import com.salmon.spicysalmon.menus.CustomerMenu;
 import com.salmon.spicysalmon.models.Customer;
-import com.salmon.spicysalmon.models.Employee;
-import com.salmon.spicysalmon.models.Menu;
 
 public class AuthenticationController {
 
     private String[] getLoginInfo(){
-        System.out.println(Util.EOL + "Login: Please fill in your details!");
-        String SSN = Util.readLine("Social Security Number: ");
-        String password = Util.readLine("Password: ");
+        System.out.println(UserIO.EOL + "Login: Please fill in your details!");
+        String SSN = UserIO.readStr("Social Security Number: ");
+        String password = UserIO.readStr("Password: ");
         return new String[]{SSN, password};
     }
 
@@ -22,7 +18,7 @@ public class AuthenticationController {
         String[] loginInfo = getLoginInfo();
         String SSN = loginInfo[0];
         String password = loginInfo[1];
-        Customer loggedInCustomer = customerController.getCustomer(SSN);
+        Customer loggedInCustomer = customerController.findCustomer(SSN);
         if (loggedInCustomer != null && loggedInCustomer.verifyPassword(password)) {
             CustomerMenu customerMenu = new CustomerMenu();
             customerMenu.show();

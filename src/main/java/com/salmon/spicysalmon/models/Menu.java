@@ -1,6 +1,6 @@
 package com.salmon.spicysalmon.models;
 
-import com.salmon.spicysalmon.Util;
+import com.salmon.spicysalmon.UserIO;
 
 public class Menu {
     private final String MENU_HEADING;
@@ -12,9 +12,9 @@ public class Menu {
     }
 
     public String toString(){
-        String result = Util.EOL + MENU_HEADING + Util.EOL;
+        String result = UserIO.EOL + MENU_HEADING + UserIO.EOL;
         for (int i = 0; i < MENU_OPTIONS.length; i++) {
-            result += i + ". " + MENU_OPTIONS[i] + Util.EOL;
+            result += i + ". " + MENU_OPTIONS[i] + UserIO.EOL;
         }
         return result;
     }
@@ -22,7 +22,8 @@ public class Menu {
     public int getValidOption(){
         int userInput;
         do{
-            userInput = Util.readInt("Type an option number: ");
+            System.out.println("Enter you option number: ");
+            userInput = UserIO.readInt();
             if(userInput < 0 || userInput >= MENU_OPTIONS.length){
                 System.out.println("Invalid menu option. Please type another option.");
             }

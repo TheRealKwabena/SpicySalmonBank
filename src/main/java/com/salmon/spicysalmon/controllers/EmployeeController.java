@@ -28,6 +28,7 @@ public class EmployeeController {
             Employee employee = new Employee(socialSecurityNumber, password, firstName, lastName, title, startDate);
             employeeAccounts.put(socialSecurityNumber, employee);
     }
+
     public LinkedHashMap<String, Employee> getAllEmployees(){
         return employeeAccounts;
     }
