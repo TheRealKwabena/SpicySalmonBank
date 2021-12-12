@@ -3,7 +3,6 @@ package com.salmon.spicysalmon.controllers;
 import com.salmon.spicysalmon.UserIO;
 import com.salmon.spicysalmon.models.BankAccount;
 import com.salmon.spicysalmon.models.Customer;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -23,13 +22,8 @@ public class CustomerController {
             }
     }
 
-    /*
-    public Customer getCustomer(String SSN) {
-        return allCustomers.get(SSN);
-    }
-     */
-
     public Customer findCustomer(String SSN) {
+        System.out.println("kladdkaka 09");
         for (Customer customer : customerList) {
             if (customer.getSocialSecurityNumber().equals(SSN)) {
                 return customer;
@@ -50,7 +44,7 @@ public class CustomerController {
 
     public String printAllCustomers(){
         String EOL = System.lineSeparator();
-        if(customerList.isEmpty()){
+        if (customerList.isEmpty()) {
             return "No customers registered yet.";
         }
         String message = "All registered customers:" + EOL + "-------------------------" + EOL;
@@ -74,18 +68,20 @@ public class CustomerController {
 
     public String printSpecificCustomer(String SSN) {
         Customer customer = findCustomer(SSN);
-        System.out.println("kladdkaka45");
+        System.out.println("kladdkaka 45");
         if(customer == null) {
             return ("Customer " + SSN + " could not be found.");
         }
         return printCustomer(customer.getSocialSecurityNumber());
     }
 
+    // method should use constructor BankAccount
     public String createBankAccount(String SSN, String accountName){
         Customer customer = findCustomer(SSN);
-        if(customer == null){
+        if (customer == null) {
             return "Customer does not exist.";
-        }else{
+        } else {
+            System.out.println("kladdkaka 32");
             return customer.createBankAccount(accountName);
         }
     }
@@ -105,10 +101,12 @@ public class CustomerController {
         BankAccount account = findBankAccount(SSN, accountNumber);
         if (account != null && amount < account.getBalance()) {
             account.setBalance(account.getBalance() - amount);
+            System.out.println("kladdkaka3491");
         }
     }
 
     public BankAccount findBankAccount(String SSN, String accountID) {
+        System.out.println("kladdkaka 92313");
         Customer customer = findCustomer(SSN);
         String accountNumber = SSN+accountID;
         for (BankAccount account : customer.getCustomerAccounts()) {
@@ -123,13 +121,19 @@ public class CustomerController {
         String SSN = accountNumber.substring(0,9);
         String accID = accountNumber.substring(10, 11);
         Customer customer = findCustomer(SSN);
-        if(customer != null){
+        if (customer != null) {
             System.out.println("kladdkaka543432");
             return customer.deleteBankAccount(accID);
-        } else{
+        } else {
             return "Account was not found.";
         }
     }
+
+    public void printBalance(String SSN, String accountID) {
+        System.out.println("kladdkaka 342341");
+        Customer customer = findCustomer(SSN);
+    }
+
 }
 
 

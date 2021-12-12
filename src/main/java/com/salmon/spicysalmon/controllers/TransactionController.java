@@ -12,23 +12,27 @@ import java.util.LinkedHashMap;
 
 public class TransactionController {
 
+
     private static final LinkedHashMap<String, LinkedHashMap<String, ArrayList<Transaction>>> transactionList = new LinkedHashMap<>();
 
-    public void createTransaction(String acc1, String acc2, double amount){
-        Transaction transaction1 = new Transaction(acc1, acc2, 0-amount);
-        Transaction transaction2 = new Transaction(acc2, acc1, amount);
-        String SSN1 = acc1.substring(0,9);
-        String accID1 = acc1.substring(10,11);
-        String SSN2 = acc2.substring(0,9);
-        String accID2 = acc2.substring(10,11);
+    public void createTransaction(String accountTo, String accountFrom, double amount){
+        Transaction transaction1 = new Transaction(accountTo, accountFrom, 0-amount);
+        Transaction transaction2 = new Transaction(accountFrom, accountTo, amount);
+        String SSN1 = accountTo.substring(0,9);
+        String accID1 = accountTo.substring(10,11);
+        String SSN2 = accountFrom.substring(0,9);
+        String accID2 = accountFrom.substring(10,11);
         transactionList.get(SSN1).get(accID1).add(transaction1);
         transactionList.get(SSN2).get(accID2).add(transaction2);
     }
 
-    public boolean checkIfSSNUnique(String SSN) { // Armin: use verb when naming methods
+    public boolean checkIfSSNUnique(String SSN) {
         return transactionList.get(SSN) == null;
     }
 
+    /* https://www.oracle.com/java/technologies/javase/codeconventions-namingconventions.html
+    "Methods should be verbs, in mixed case with the first letter lowercase, with the first letter of each internal word capitalized."
+     */
     public String ascendingTransactionsByPriceForAccount (String SSN, String accID){
         CustomerController customerController = new CustomerController();
         Customer desiredCustomer = customerController.findCustomer(SSN);
@@ -46,6 +50,9 @@ public class TransactionController {
         return sortedList;
     }
 
+    /* https://www.oracle.com/java/technologies/javase/codeconventions-namingconventions.html
+    "Methods should be verbs, in mixed case with the first letter lowercase, with the first letter of each internal word capitalized."
+     */
     public String descendingTransactionsByPriceForAccount (String SSN, String accID) {
         ArrayList<Transaction> sortedList = sortTransactionsByPriceInAcc(SSN, accID);
         String sortedTransactions = "";
@@ -92,7 +99,6 @@ public class TransactionController {
         for(Transaction transaction : sortByDateEarliest(SSN, accID)){
             transactionsList += transaction + UserIO.EOL;
         }
-
         return transactionsList;
     }
 
@@ -104,4 +110,6 @@ public class TransactionController {
         }
         return transactionsList;
     }
+
+
 }

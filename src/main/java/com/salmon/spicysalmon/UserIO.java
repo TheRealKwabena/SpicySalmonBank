@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class UserIO {
 
     public static String EOL = System.lineSeparator();
-    private static final Scanner input = new Scanner(System.in);
 
     public static String decimalFormat(double price){
         DecimalFormat df = new DecimalFormat("0.00");

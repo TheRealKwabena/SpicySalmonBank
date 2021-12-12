@@ -10,16 +10,16 @@ public class Customer extends User {
     private String residentialArea;
     private String occupation;
 
-    public ArrayList<BankAccount> getCustomerAccounts() {
-        return customerAccounts;
-    }
-
     public Customer(String socialSecurity, String password, String firstName, String lastName, double salary, String residentialArea, String occupation) {
         super(socialSecurity, password, firstName, lastName);
         this.customerAccounts = new ArrayList<>();
         this.salary = salary;
         this.residentialArea = residentialArea;
         this.occupation = occupation;
+    }
+
+    public ArrayList<BankAccount> getCustomerAccounts() {
+        return customerAccounts;
     }
 
     public double getSalary() {
