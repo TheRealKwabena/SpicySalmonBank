@@ -135,10 +135,13 @@ public class OldMain {
                     System.out.println("You have chosen: Create bank account for a customer.");
                     System.out.print("Which customer do you wish to create an account for? Enter SSN: ");
                     String SSN = UserIO.readStr();
-                    System.out.print("Enter account name: ");
+                    System.out.print("Enter your first name: ");
+                    firstName = UserIO.readStr();
+                    System.out.print("Enter your last name: ");
+                    lastName = UserIO.readStr();
+                    System.out.println("Enter account name: ");
                     String accountName = UserIO.readStr();
-                    customers.createBankAccount(SSN, accountName);
-                    System.out.println(customers.createBankAccount(SSN, accountName));
+                    customers.createBankAccount(SSN, SSN, firstName, lastName, accountName);
                     printCustomerOptions();
                     break;
                 case 5:
@@ -182,9 +185,7 @@ public class OldMain {
                     System.out.println("You have chosen: print balance");
                     System.out.println("Enter SSN: ");
                     SSN = UserIO.readStr();
-                    System.out.println("Enter accountID: ");
-                    accountNumber = UserIO.readStr();
-                    customers.printBalance(SSN, accountNumber);
+                    customers.printBalance(SSN);
                     printCustomerOptions();
                     break;
                 default:

@@ -56,9 +56,9 @@ public class Customer extends User {
                 '}';
     }
 
-    public double getTotalBalance(String accName){
-        //return accounts.get(accName).getBalance();
-        return 0.0;
+    public double getTotalBalance(){
+        BankAccount bankAccount = customerAccounts.get(0);
+        return bankAccount.getBalance();
     }
 
     public double deposit(String accountID, double amount) throws Exception {

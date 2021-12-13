@@ -26,6 +26,7 @@ public class TransactionController {
         transactionList.get(SSN2).get(accID2).add(transaction2);
     }
 
+    // this method belongs to CustomerController?
     public boolean checkIfSSNUnique(String SSN) {
         return transactionList.get(SSN) == null;
     }

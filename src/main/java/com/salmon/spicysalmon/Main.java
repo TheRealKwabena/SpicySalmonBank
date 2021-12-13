@@ -42,7 +42,7 @@ public class Main {
                 String accountName = (String) account.get("accountName");
                 // get account ID formatting correct, in accordance with Customer.java createBankAccount method
                 String accID = j < 10 ? "0" + (j + 1) : (j + 1) + "";
-                cc.createBankAccount(SSN, accountName);
+                //cc.createBankAccount(SSN, accountName);
                 cc.depositMoney(SSN, j + "", balance);
                 BankAccount newAccount = cc.findBankAccount(SSN, accID);
             }
