@@ -132,7 +132,6 @@ public class EmployeeMenu {
         String residentalArea = Util.readLine("Where do you live?: ");
         String occupation = Util.readLine("What is your occupation?: ");
         customerController.createCustomer(socialSecurityNumber,password, firstName,lastName, salary, residentalArea, occupation);
-        // should prob remove the excepction
     }
     public void removeCustomer(CustomerController customerController){
         System.out.println("You have chosen: Remove a customer.");
