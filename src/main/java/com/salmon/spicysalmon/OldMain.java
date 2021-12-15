@@ -116,7 +116,7 @@ public class OldMain {
 //                    String residentialArea = UserIO.readStr();
 //                    System.out.print("What is your occupation?: ");
 //                    String occupation = UserIO.readStr();
-//                    customers.createCustomer(socialSecurityNumber, password, firstName, lastName, salary, residentialArea, occupation);
+//                    System.out.println(customers.createCustomer(socialSecurityNumber, password, firstName, lastName, salary, residentialArea, occupation));
 //                    printCustomerOptions();
 //                    break;
 //                case 2:

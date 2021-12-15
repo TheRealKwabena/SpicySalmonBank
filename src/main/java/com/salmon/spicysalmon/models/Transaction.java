@@ -20,6 +20,12 @@ public class Transaction implements Comparable<Transaction>{
         this.AMOUNT = amount;
         this.DATE = Util.getDateAndTime();
     }
+
+    @Override
+    public String toString() {
+        return "Transaction{" + "ID='" + ID + '\'' + ", TO='" + TO + '\'' + ", FROM='" + FROM + '\'' + ", AMOUNT=" + AMOUNT + ", DATE='" + DATE + '\'' + '}';
+    }
+
     public String getID() {
         return ID;
     }
