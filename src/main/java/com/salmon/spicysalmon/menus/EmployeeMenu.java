@@ -197,18 +197,17 @@ public class EmployeeMenu {
         }
     }
     // lists all bank account requests, then allows the employee to approve/deny that request
-    public void listAllBankAccountRequests(AccountRequestController accountRequestController){
-        ArrayList<BankAccountRequest> requests = accountRequestController.getAllPendingBankAccountRequests();
-        accountRequestController.printAllBankAccountRequests();
+    public void listAllBankAccountRequests(AccountRequestController accountRequestController) throws Exception {
+        accountRequestController.printAllPendingBankAccountRequests();
         int requestNum = (Util.readInt("Which request do you want to check out? type 0 to exit")) -1;
         if (requestNum != 0){
-            BankAccountRequest request = requests.get(requestNum);
-            System.out.println(request.toString());
+            String request = accountRequestController.getSpecificBankAccountRequestFromList(requestNum);
+            approveDenyBankAccountRequest();
         }
 
     }
     // approves or denies a customer account request, denial needs a accompanied message as to why it was denied
-    public void approveDenyCustomerAccountRequest(String SSN, CustomerAccountRequest CAR, AccountRequestController accountRequestController) throws Exception {
+    public void approveDenyCustomerAccountRequest(CustomerAccountRequest CAR, AccountRequestController accountRequestController) throws Exception {
         String stringUserInput = "";
         do {
             stringUserInput = Util.readLine("Please type in: approve or deny");
