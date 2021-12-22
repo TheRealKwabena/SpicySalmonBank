@@ -31,11 +31,11 @@ public class CustomerAccountRequest extends AccountRequest{
         return lastName;
     }
 
-    public String getPassword() {
+    public String getPassword() { //We use this to create a customer from the request, not sure if we should remove this after all?
         return password;
     }
 
-    public String getSOCIALSECURITYNUMBER() {
+    public String getSocialSecurityNumber() {
         return SOCIALSECURITYNUMBER;
     }
 
@@ -66,24 +66,43 @@ public class CustomerAccountRequest extends AccountRequest{
     */
 
     public String toString(){
-        String line = "-"; //Separator line to segment customer and request information
-
-                 if (this.getFirstName().length() + this.getLastName().length() > this.getSOCIALSECURITYNUMBER().length()) //Adds some -------- between request dates and requestee information
-                 line = line.repeat(5 + this.getFirstName().length() + this.getLastName().length());                            // compares length of SSN and first + last name to decide how many dashes to use
-                                                                                                                            // could just use more than necessary I guess.
-                 else line = line.repeat(5 + this.getSOCIALSECURITYNUMBER().length());
+        String line = "-".repeat(50); //Separator line to segment things
+        String status = "";
+        if (this.getIsApproved() == null)
+            status =  "|Status: Pending" + Util.EOL
+                    + "|Created: " + this.getCREATIONDATE(); //If the request is pending we show creation date.
+        if (this.getIsApproved())
+            status = "|Status: Approved" + Util.EOL
+                    + "|Created: " + this.getCREATIONDATE() + Util.EOL //If the request was approved/denied we also show when it was resolved.
+                    + "|Resolved : " + this.getRESOLVEDDATE();
+        else
+            status = "|Status: Denied" + Util.EOL
+                    + "|Created: " + this.getCREATIONDATE() + Util.EOL
+                    + "|Resolved : " + this.getRESOLVEDDATE();
         return
-                line + Util.EOL
-                + "Customer Account Request" + Util.EOL
-                + getApprovalStatus() + Util.EOL
-                + line
-                + "REQUESTEE INFORMATION"
-                + line
-                + "Name: " + this.firstName + " " + this.lastName + Util.EOL
-                + "SSN: " + this.SOCIALSECURITYNUMBER + Util.EOL
-                + "Address: " + this.residentialArea + Util.EOL
-                + "Occupation: " + this.occupation + Util.EOL
-                + "Salary: " + this.salary + Util.EOL
-                + line + Util.EOL;
+                "|" + line + Util.EOL
+                        + "Bank Account Request" + Util.EOL
+                        + status + Util.EOL
+                        + "|" + line + Util.EOL
+                        + "|CUSTOMER INFORMATION"
+                        + "|" + line + Util.EOL
+                        + "|Name: " +this.getFirstName() + " " + this.getLastName() + Util.EOL
+                        + "|SSN: " +this.getSocialSecurityNumber() + Util.EOL
+                        + "|Address: " + this.getResidentialArea() + Util.EOL
+                        + "|Occupation " + this.getOccupation() + Util.EOL
+                        + "|Salary: " + this.getSalary() + Util.EOL
+                        + "|" + line + Util.EOL;
     }
+   /* public int compareTo(CustomerAccountRequest otherCustomerAccountRequest) { //Compare last name letter by letter
+        int nameLength = Math.max(this.getLastName().length(), otherCustomerAccountRequest.getLastName().length()); //Checks which last name is longer
+        for (int i = 0; i < nameLength; i++) {
+            if (this.getLastName().toLowerCase().charAt(i) < otherCustomerAccountRequest.getLastName().toLowerCase().charAt(i)){
+                return -1;
+            }
+            if (this.getLastName().toLowerCase().charAt(i) > otherCustomerAccountRequest.getLastName().toLowerCase().charAt(i)){
+                return 1;
+            }
+        }
+        return 0;
+    }*/
 }
