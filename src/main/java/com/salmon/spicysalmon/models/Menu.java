@@ -12,6 +12,7 @@ public class Menu {
     }
 
     public String toString(){
+        Util.clearScreen();
         String result = Util.EOL + MENU_HEADING + Util.EOL + Util.EOL;
         for (int i = 0; i < MENU_OPTIONS.length; i++) {
             result += i + ". " + MENU_OPTIONS[i] + Util.EOL;

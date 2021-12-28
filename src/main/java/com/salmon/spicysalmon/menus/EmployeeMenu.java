@@ -68,18 +68,23 @@ public class EmployeeMenu {
             switch (userInput){
                 case 1: // login to a specific customer account
                     goToCustomer(authenticationController);
+                    Util.waitToContinue();
                     break;
                 case 2: // create customer
                     createCustomer(customerController);
+                    Util.waitToContinue();
                     break;
                 case 3: // remove customer
                     removeCustomer(customerController);
+                    Util.waitToContinue();
                     break;
                 case 4: // delete a bank account
                     deleteBankAccount(customerController);
+                    Util.waitToContinue();
                     break;
                 case 5: // print all customers
                     printAllCustomers(customerController);
+                    Util.waitToContinue();
                     break;
                 default:
                     break;
