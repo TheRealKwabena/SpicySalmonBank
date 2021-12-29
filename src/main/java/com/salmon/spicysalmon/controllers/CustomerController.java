@@ -4,6 +4,7 @@ import com.salmon.spicysalmon.Util;
 import com.salmon.spicysalmon.models.BankAccount;
 import com.salmon.spicysalmon.models.Customer;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CustomerController {
@@ -279,6 +280,14 @@ public class CustomerController {
         } catch (Exception customerNotFound) {
             return customerNotFound.getMessage();
         }
+    }
+    public boolean doesIDsMatch(String SSN, String accID){
+        ArrayList<String> AccountIDs = new ArrayList<>();
+        Customer customer = findCustomer(SSN);
+        for (BankAccount bankAccount : customer.getBankAccounts() ){
+            if (accID.equals(bankAccount.getAccountNumber())) return true;
+        }
+        return false;
     }
 }
 
