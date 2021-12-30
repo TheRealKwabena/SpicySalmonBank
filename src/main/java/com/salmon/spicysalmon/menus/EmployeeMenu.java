@@ -43,13 +43,12 @@ public class EmployeeMenu {
     public void show(String SSN){
         AccountRequestController accountRequestController = new AccountRequestController();
         CustomerController customerController = new CustomerController();
-        EmployeeController employeeController = new EmployeeController();
         AuthenticationController authenticationController = new AuthenticationController();
 
         Menu employeeMenu = new Menu(EMPLOYEE_HEADING, EMPLOYEE_OPTIONS);
         int userInput = 0;
         do {
-            System.out.println(employeeMenu);
+            System.out.print(employeeMenu);
             userInput = employeeMenu.getValidOption();
             switch (userInput) {
                 case 0 -> System.out.println("goodbye");
@@ -63,26 +62,31 @@ public class EmployeeMenu {
         Menu employeeCustomerMenu = new Menu(EMPLOYEE_HEADING2, EMPLOYEE_OPTIONS2);
         int userInput = 0;
         do {
-            System.out.println(employeeCustomerMenu);
+            System.out.print(employeeCustomerMenu);
             userInput = employeeCustomerMenu.getValidOption();
             switch (userInput){
                 case 1: // login to a specific customer account
+                    Util.clearScreen();
                     goToCustomer(authenticationController);
                     Util.waitToContinue();
                     break;
                 case 2: // create customer
+                    Util.clearScreen();
                     createCustomer(customerController);
                     Util.waitToContinue();
                     break;
                 case 3: // remove customer
+                    Util.clearScreen();
                     removeCustomer(customerController);
                     Util.waitToContinue();
                     break;
                 case 4: // delete a bank account
+                    Util.clearScreen();
                     deleteBankAccount(customerController);
                     Util.waitToContinue();
                     break;
                 case 5: // print all customers
+                    Util.clearScreen();
                     printAllCustomers(customerController);
                     Util.waitToContinue();
                     break;
@@ -95,36 +99,44 @@ public class EmployeeMenu {
     // Account request menu that handles all the functionality were the Employee directly interacts with Account Requests
     public void showAccountRequestMenu(AccountRequestController accountRequestController, CustomerController customerController){
         Menu employeeAccountRequestMenu = new Menu(EMPLOYEE_HEADING3,EMPLOYEE_OPTIONS3);
-        System.out.println(employeeAccountRequestMenu);
+        System.out.print(employeeAccountRequestMenu);
         int userInput = employeeAccountRequestMenu.getValidOption();
         switch (userInput){
             case 1: // approve/deny customer application
                 try {
+                    Util.clearScreen();
                     specificCustomerAccountRequest(accountRequestController);
                 }catch (Exception IOException){
                     System.out.println(IOException.getMessage());
                 }
+                Util.waitToContinue();
                 break;
             case 2: // approve/deny bank application
                 try {
+                    Util.clearScreen();
                     specificBankBankAccountRequest(accountRequestController);
                 }catch (Exception IOException){
                     System.out.println(IOException.getMessage());
                 }
+                Util.waitToContinue();
                 break;
             case 3: // look att all the customer account requests, then pick one you want to approve/deny
                 try {
+                    Util.clearScreen();
                     listAllCustomerAccountRequests(accountRequestController);
                 }catch (Exception IOException){
                     System.out.println(IOException.getMessage());
                 }
+                Util.waitToContinue();
                 break;
             case 4: // look att all the bank account requests, then pick one you want to approve/deny
                 try {
+                    Util.clearScreen();
                     listAllBankAccountRequests(accountRequestController);
                 }catch (Exception IOException){
                     System.out.println(IOException.getMessage());
                 }
+                Util.waitToContinue();
                 break;
         }
     }
@@ -138,15 +150,15 @@ public class EmployeeMenu {
     // creates a new customer
     public void createCustomer(CustomerController customerController){
         System.out.println("You have chosen: Create a customer.");
-        String socialSecurityNumber = Util.readLine("What is your SSN?: ");
+        String socialSecurityNumber = Util.readSSN("Enter the customer's SSN: ");
         String password = Util.readNewPassword();
-        String firstName = Util.readLine("What is your first name?: ");
-        String lastName = Util.readLine("What is your last name?: ");
-        double salary = Util.readDouble("What is your salary?: ");
-        String residentalArea = Util.readLine("Where do you live?: ");
-        String occupation = Util.readLine("What is your occupation?: ");
+        String firstName = Util.readLine("Enter the customer's first name: ");
+        String lastName = Util.readLine("Enter the customer's last name: ");
+        double salary = Util.readDouble("Enter the customer's salary: ");
+        String residentialArea = Util.readLine("Enter the customer's place of residence: ");
+        String occupation = Util.readLine("Enter the customer's occupation: ");
         try{
-            customerController.createCustomer(socialSecurityNumber,password, firstName,lastName, salary, residentalArea, occupation);
+            customerController.createCustomer(socialSecurityNumber,password, firstName,lastName, salary, residentialArea, occupation);
         } catch (Exception e){
             System.out.println(e.getMessage());
         }

@@ -19,8 +19,6 @@ public class CustomerMenu {
             "Apply for new Bank Account",
             "Transactions for all Accounts",
             "Account settings"
-
-
             // Continue to add more options here and to the switch case as you see fit, it's ok to create submenus if anyone want to do that,
             // just make a switch case inside the switch case (or make a seperate method that is called inside the switch case)
     };
@@ -61,6 +59,7 @@ public class CustomerMenu {
             userInput = customerMenu.getValidOption();
             switch (userInput) {
                 case 1:
+                    Util.clearScreen();
                     showBankAccountMenu(customerController, transactionController, SSN);
                     break;
                 case 2:
@@ -71,9 +70,12 @@ public class CustomerMenu {
                     ///Ask for account name
                     break;
                 case 4:///Transactions for all accounts
+                    Util.clearScreen();
                     System.out.print(transactionController.printTransactionsForAllAccounts(SSN));
+                    Util.waitToContinue();
                     break;
                 case 5:///Account settings(Customer can change) Need to know what can change in an account
+                    Util.clearScreen();
                     showAccountSettings(SSN, customerController);
                     break;
                 default:
@@ -89,7 +91,7 @@ public class CustomerMenu {
         String accountID = Util.readLine("To select a specific bank account, Enter account ID: ");
 
         do {
-            System.out.println(bankAccountMenu);
+            System.out.print(bankAccountMenu);
             userInput = bankAccountMenu.getValidOption();
             switch (userInput) {
                 case 1 -> showBalance(customerController, SSN, accountID);

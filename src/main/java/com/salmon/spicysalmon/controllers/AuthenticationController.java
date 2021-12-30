@@ -12,9 +12,10 @@ import com.salmon.spicysalmon.models.Menu;
 public class AuthenticationController {
 
     private String[] getLoginInfo() {
-        System.out.println(Util.EOL + "Login: Please fill in your details!");
+        Util.clearScreen();
+        System.out.println(Util.EOL + "Login: Please fill in your details!"+Util.EOL);
         String SSN = Util.readLine("Social Security Number: ");
-        String password = Util.readLine("Password: ");
+        String password = Util.readPassword("Password: ");
         return new String[]{SSN, password};
     }
 
@@ -29,6 +30,7 @@ public class AuthenticationController {
             customerMenu.show(SSN); //Added the SSN in the brackets
         } else {
             System.out.println("Username or password incorrect.");
+            Util.waitToContinue();
         }
     }
 
@@ -43,6 +45,7 @@ public class AuthenticationController {
             employeeMenu.show(SSN);
         } else {
             System.out.println("Username or password incorrect");
+            Util.waitToContinue();
         }
     }
 }

@@ -32,7 +32,7 @@ public class JSONController {
             obj = jsonParser.parse(new FileReader("src/main/java/com/salmon/spicysalmon/data/Customers.json"));
         } catch(FileNotFoundException fileNotFoundException){
             // necessary for the json demo, other wise would need to create the complex directory structure
-            obj = jsonParser.parse(new FileReader("/data/Customers.json"));
+            obj = jsonParser.parse(new FileReader("data/Customers.json"));
         }
         JSONArray customers = (JSONArray) obj;
         for (int i = 0; i < customers.size(); i++) {
@@ -68,7 +68,7 @@ public class JSONController {
             obj = jsonParser.parse(new FileReader("src/main/java/com/salmon/spicysalmon/data/Employees.json"));
         } catch(FileNotFoundException fileNotFoundException){
             // necessary for the json demo, other wise would need to create the complex directory structure
-            obj = jsonParser.parse(new FileReader("/data/Employees.json"));
+            obj = jsonParser.parse(new FileReader("data/Employees.json"));
         }
         JSONArray employees = (JSONArray) obj;
         for(int i=0; i<employees.size();i++){
@@ -92,7 +92,7 @@ public class JSONController {
             obj = jsonParser.parse(new FileReader("src/main/java/com/salmon/spicysalmon/data/Transactions.json"));
         } catch(FileNotFoundException fileNotFoundException){
             // necessary for the json demo, other wise would need to create the complex directory structure
-            obj = jsonParser.parse(new FileReader("/data/Transactions.json"));
+            obj = jsonParser.parse(new FileReader("data/Transactions.json"));
         }
         JSONArray transactions = (JSONArray) obj;
         for(int i=0; i<transactions.size(); i++){
@@ -114,7 +114,7 @@ public class JSONController {
             obj = jsonParser.parse(new FileReader("src/main/java/com/salmon/spicysalmon/data/CustomerAccountRequests.json"));
         } catch(FileNotFoundException fileNotFoundException){
             // necessary for the json demo, other wise would need to create the complex directory structure
-            obj = jsonParser.parse(new FileReader("/data/CustomerAccountRequests.json"));
+            obj = jsonParser.parse(new FileReader("data/CustomerAccountRequests.json"));
         }
         JSONArray applications = (JSONArray) obj;
         for(int i=0; i<applications.size(); i++){
@@ -140,7 +140,7 @@ public class JSONController {
             obj = jsonParser.parse(new FileReader("src/main/java/com/salmon/spicysalmon/data/BankAccountRequests.json"));
         } catch(FileNotFoundException fileNotFoundException){
             // necessary for the json demo, other wise would need to create the complex directory structure
-            obj = jsonParser.parse(new FileReader("/data/BankAccountRequests.json"));
+            obj = jsonParser.parse(new FileReader("data/BankAccountRequests.json"));
         }
         JSONArray applications = (JSONArray) obj;
         for(int i=0; i<applications.size(); i++){

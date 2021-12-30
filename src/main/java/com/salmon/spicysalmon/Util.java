@@ -1,5 +1,6 @@
 package com.salmon.spicysalmon;
 
+import java.io.Console;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -46,8 +47,15 @@ public class Util {
         return formatter.format(calendar.getTime());
     }
 
-    public static boolean checkSSNFormat(String SSN){
-        return SSN.matches("^\\d{10}$");
+    public static String readSSN(String message){
+        String SSN;
+        do{
+            SSN = readLine(message);
+            if(!SSN.matches("^\\d{10}$")){
+                System.out.println("Please enter a valid Social Security Number, use format YYMMDDXXXX");
+            }
+        } while(!SSN.matches("^\\d{10}$"));
+        return SSN;
     }
 
     public static String readNewPassword(){
@@ -58,8 +66,8 @@ public class Util {
                     + Util.EOL + "Both upper-case and lower-case letters"
                     + Util.EOL + "One number"
                     + Util.EOL + "Longer than 8 characters" + Util.EOL);
-            password = readLine("Enter your password: ");
-            verifiedPassword = readLine("Confirm your password: ");
+            password = readPassword("Enter your password: ");
+            verifiedPassword = readPassword("Confirm your password: ");
 
             System.out.println();
             if(password.equals(password.toLowerCase())) System.out.println("Your password did not have a uppercase Character");
@@ -74,5 +82,35 @@ public class Util {
                 && password.matches(".*[0-9].*")
                 && password.equals(verifiedPassword)));
         return password;
+    }
+
+    public static void waitToContinue(){
+        readLine("Press enter to continue: ");
+    }
+
+    public static void clearScreen(){
+        try {
+            if (System.getProperty("os.name").contains("Windows")){
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            }
+            else{
+                Runtime.getRuntime().exec("clear");
+            }
+        } catch (IOException | InterruptedException ex) {
+            System.out.print("");
+        }
+    }
+
+    public static String readPassword(String message){
+        System.out.print(message);
+        try{
+            Console console = System.console();
+            char[] passwordChars = console.readPassword();
+            String thePassword = String.valueOf(passwordChars);
+            return thePassword;
+        } catch(Exception e){
+            String input = readLine(message);
+            return input;
+        }
     }
 }
