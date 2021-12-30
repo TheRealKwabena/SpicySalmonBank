@@ -2,6 +2,7 @@ package com.salmon.spicysalmon.menus;
 
 import com.salmon.spicysalmon.UserIO;
 import com.salmon.spicysalmon.Util;
+import com.salmon.spicysalmon.controllers.AccountRequestController;
 import com.salmon.spicysalmon.controllers.CustomerController;
 import com.salmon.spicysalmon.controllers.TransactionController;
 import com.salmon.spicysalmon.models.BankAccount;
@@ -52,6 +53,7 @@ public class CustomerMenu {
     public void show(String SSN){
         CustomerController customerController = new CustomerController();
         TransactionController transactionController = new TransactionController();
+        AccountRequestController accountRequestController = new AccountRequestController();
         Menu customerMenu = new Menu(CUSTOMER_HEADING, CUSTOMER_OPTIONS);
 
 
@@ -65,10 +67,18 @@ public class CustomerMenu {
                     break;
                 case 2:
                     //Show Applications
+                    try{
+                        System.out.println(accountRequestController.printBankAccountRequestsForSpecificCustomer(SSN));
+                    } catch(Exception e){
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 3:
                     ///Apply for bank accounts
                     ///Ask for account name
+                    String newAccountName = Util.readLine("Give your new account a name: ");
+                    accountRequestController.createBankAccountRequest(customerController.findCustomer(SSN), newAccountName);
+                    System.out.println("Your request has been sent. You can check it's status in the applications menu.");
                     break;
                 case 4:///Transactions for all accounts
                     System.out.print(transactionController.printTransactionsForAllAccounts(SSN));
