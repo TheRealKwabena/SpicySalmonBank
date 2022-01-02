@@ -114,7 +114,7 @@ public class AccountRequestController {
 
     //Returns ArrayList with all Bank Account Requests, copied and reversed
     //because then we get new requests first
-    public ArrayList<BankAccountRequest> getAllBankAccountRequests()throws Exception{
+    private ArrayList<BankAccountRequest> getAllBankAccountRequests()throws Exception{
         ArrayList<BankAccountRequest> returnList = new ArrayList<>(allBankAccountRequests);
         Collections.reverse(returnList); //This should sort it by creation date (new first) because in allBankAccountRequests the oldest will be first in the list.
         if(returnList.isEmpty()){throw new Exception("There are no bank account requests.");}
@@ -125,7 +125,8 @@ public class AccountRequestController {
        String output = "All Bank Account Requests" + stringBuilderBankAccountRequest(getAllBankAccountRequests());
        return output;
     }
-    public ArrayList<BankAccountRequest> getAllBankAccountRequestsForSearchedName(String name)throws Exception {
+
+    private ArrayList<BankAccountRequest> getAllBankAccountRequestsForSearchedName(String name)throws Exception {
         ArrayList<BankAccountRequest> returnList = new ArrayList<>();
         for (BankAccountRequest request : allBankAccountRequests) {
             if (request.getREQUESTEE().getFirstName().equals(name) || request.getREQUESTEE().getLastName().equals(name)) {
@@ -195,7 +196,8 @@ public class AccountRequestController {
     //Gets a toStringed specific request from the "getAllPendingBankAccountRequests" method. This is done to show the request information to the employee
     //Takes in a list, so we give it a list when calling it, like this: getSpecificBankAccountRequestFromList(input, getAllBankAccountRequests())
     // So we get the users input e.g. 1 then the right list depending on where in the menu we call this method.
-    public BankAccountRequest getSpecificBankAccountRequestFromList(int input, ArrayList<BankAccountRequest> list) throws Exception {
+    public BankAccountRequest getSpecificBankAccountRequestFromList(int input) throws Exception {
+        ArrayList<BankAccountRequest> list = getAllBankAccountRequests();
         if (input < 1 || input - 1 > list.size()) {
             throw new Exception("Invalid input, please choose between 1-" + list.size());
         } else {
@@ -238,7 +240,7 @@ public class AccountRequestController {
 
     //Returns ArrayList with all Bank Account Requests, copied and reversed
     //because then we get new requests first
-    public ArrayList<CustomerAccountRequest> getAllCustomerAccountRequests() throws Exception{
+    private ArrayList<CustomerAccountRequest> getAllCustomerAccountRequests() throws Exception{
         ArrayList<CustomerAccountRequest> returnList = new ArrayList<>();
         returnList.addAll(allCustomerAccountRequests);
         Collections.reverse(returnList);//This should sort it by creation date (new first) because in allCustomerAccountRequests the oldest will be first in the list.
@@ -287,9 +289,9 @@ public class AccountRequestController {
         return output;
     }
     //Gets customeraccountrequest by ID, can probably delete this because we can jsut use the SSN one since it can only be 1 CustomerAccountRequest per SSN, unlike bankaccountrequests
-    public CustomerAccountRequest getSpecificCustomerAccountRequest(String ID) throws Exception {
+    public CustomerAccountRequest getSpecificCustomerAccountRequest(String SSN) throws Exception {
         for (CustomerAccountRequest request : allCustomerAccountRequests) {
-            if (request.getID().equals(ID)) {
+            if (request.getSocialSecurityNumber().equals(SSN)) {
                 return request;
             }
         }
@@ -315,7 +317,8 @@ public class AccountRequestController {
     //Gets a toStringed specific request from the "getAllPendingCustomerAccountRequests" method. This is done to show the request information to the employee
     //Takes in a list, so we give it a list when calling it, like this: getSpecificCustomerAccountRequestFromList(input, getAllCustomerAccountRequests())
     //So we get the users input e.g. 1 then the right list depending on where in the menu we call this method.
-    public CustomerAccountRequest getSpecificCustomerAccountRequestFromList(int input, ArrayList<CustomerAccountRequest> list) throws Exception {
+    public CustomerAccountRequest getSpecificCustomerAccountRequestFromList(int input) throws Exception {
+        ArrayList<CustomerAccountRequest> list = getAllCustomerAccountRequests();
         if (input < 1 || input - 1 > list.size()) {
             throw new Exception("Invalid input, please choose between 1- " + list.size());
         } else {

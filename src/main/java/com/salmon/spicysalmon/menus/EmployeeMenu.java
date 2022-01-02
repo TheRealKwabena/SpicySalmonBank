@@ -250,14 +250,14 @@ public class EmployeeMenu {
     // goes to a specific customers customer account requests
     public void specificCustomerAccountRequest(AccountRequestController accountRequestController) throws Exception {
         String SSN = Util.readLine("Which customers request do you want to look at?");
-        CustomerAccountRequest CAR = accountRequestController.getCustomerAccountRequest(SSN); // CAR = Customer Account Request
+        CustomerAccountRequest CAR = accountRequestController.getSpecificCustomerAccountRequest(SSN); // CAR = Customer Account Request
         System.out.println(CAR.toString());
         approveDenyCustomerAccountRequest(CAR, accountRequestController);
     }
     // goes to a specific customers bank account requests
     public void specificBankBankAccountRequest(AccountRequestController accountRequestController) throws Exception {
         String SSN = Util.readLine("Which customers request do you want to look at?");
-        ArrayList<BankAccountRequest> BARs = accountRequestController.getSpecificCustomerBankAccountRequests(SSN); // BARs = Bank Account Requests
+        ArrayList<BankAccountRequest> BARs = accountRequestController.getBankAccountRequestsForSpecificCustomer(SSN); // BARs = Bank Account Requests
         System.out.println(BARs.toString()); // bad thing here, change
         if (BARs.size() == 1){
             approveDenyBankAccountRequest(BARs.get(0), accountRequestController);
@@ -271,7 +271,7 @@ public class EmployeeMenu {
 
     // lists all customer account requests, then allows the employee to approve/deny that request
     public void listAllCustomerAccountRequests(AccountRequestController accountRequestController) throws Exception {
-        accountRequestController.printAllCustomerAccountRequests();
+        System.out.println(accountRequestController.printAllCustomerAccountRequests());
         int requestNum = (Util.readInt("Which request do you want to look at? type 0 to exit")) - 1;
         if (requestNum != 0){
             CustomerAccountRequest request = accountRequestController.getSpecificCustomerAccountRequestFromList(requestNum);
