@@ -1,8 +1,11 @@
 package com.salmon.spicysalmon.menus;
 
+import com.salmon.spicysalmon.UserIO;
 import com.salmon.spicysalmon.Util;
 import com.salmon.spicysalmon.controllers.CustomerController;
 import com.salmon.spicysalmon.controllers.TransactionController;
+import com.salmon.spicysalmon.models.BankAccount;
+import com.salmon.spicysalmon.models.Customer;
 import com.salmon.spicysalmon.models.Menu;
 
 
@@ -134,12 +137,14 @@ public class CustomerMenu {
     }
     public void transferWithinAccounts(CustomerController customerController, String SSN, String accountID) {
         String accountID2 = Util.readLine("Enter your second bank account ID: ");
-        double amount = Util.readDouble("Enter the amount: ");
+        System.out.print("Enter the amount: ");
+        double amount = UserIO.readDouble();
         System.out.println(customerController.transferMoneyWithinCustomerAccounts(SSN, amount, accountID, accountID2));
     }
     public void transferToOtherCustomer(CustomerController customerController, String SSN, String accountID1)  {
         String accountNumber = Util.readLine("Enter the account number of the recipient: ");
-        double amount = Util.readDouble("Enter the amount: ");
+        System.out.print("Enter the amount: ");
+        double amount = UserIO.readDouble();
         System.out.println(customerController.transferMoneyToOtherCustomer(SSN, accountNumber, amount, accountID1));
     }
     public void showRecentTransactions(TransactionController transactionController, String SSN, String accID) {
