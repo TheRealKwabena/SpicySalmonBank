@@ -164,10 +164,10 @@ public class CustomerMenu {
     */
 
     public void transactionsSortedInAscendingOrder(TransactionController transactionController, String SSN, String accID) {
-        System.out.print(transactionController.ascendingTransactionsByPriceForAccount(SSN, accID));
+        System.out.print(transactionController.sortTransactionsAscending(SSN, accID));
     }
     public void transactionsSortedInDescendingOrder(TransactionController transactionController, String SSN, String accID) {
-        System.out.print(transactionController.descendingTransactionsByPriceForAccount(SSN, accID));
+        System.out.print(transactionController.sortTransactionsDescending(SSN, accID));
     }
 
     public void showBalance(CustomerController customerController, String SSN, String accountID) {
