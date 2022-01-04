@@ -197,10 +197,10 @@ public class AccountRequestController {
     // So we get the users input e.g. 1 then the right list depending on where in the menu we call this method.
     public BankAccountRequest getSpecificBankAccountRequestFromList(int input) throws Exception {
         ArrayList<BankAccountRequest> list = getAllBankAccountRequests();
-        if (input < 1 || input - 1 > list.size()) {
+        if (input < 0 || input > list.size()) {
             throw new Exception("Invalid input, please choose between 1-" + list.size());
         } else {
-            return list.get(input - 1); //gets the index of the users input -1, because we start at 1 not 0
+            return list.get(input); //gets the index of the users input -1, because we start at 1 not 0
         }                               //We use 0 to go back in the menus
     }
 /*
@@ -318,10 +318,10 @@ public class AccountRequestController {
     //So we get the users input e.g. 1 then the right list depending on where in the menu we call this method.
     public CustomerAccountRequest getSpecificCustomerAccountRequestFromList(int input) throws Exception {
         ArrayList<CustomerAccountRequest> list = getAllCustomerAccountRequests();
-        if (input < 1 || input - 1 > list.size()) {
+        if (input < 0 || input > list.size()) {
             throw new Exception("Invalid input, please choose between 1- " + list.size());
         } else {
-            return list.get(input - 1);
+            return list.get(input);
         }
     }
 }

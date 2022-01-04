@@ -14,5 +14,13 @@
     "lastName": "Campanello",
     "startDate": "22/10/11",
     "isManager": true
+  },
+  {
+    "SSN": "1",
+    "password": "1",
+    "firstName": "Victor",
+    "lastName": "Campanello",
+    "startDate": "22/10/11",
+    "isManager": true
   }
 ]
