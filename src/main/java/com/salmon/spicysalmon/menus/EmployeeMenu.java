@@ -172,14 +172,14 @@ public class EmployeeMenu {
             }
             break;
         }while (userInput != 0);
-
     }
 
     public void showTransactionMenu(TransactionController transactionController){
         Menu employeeTransactionMenu = new Menu(EMPLOYEE_HEADING4, EMPLOYEE_OPTIONS4);
-        System.out.println(employeeTransactionMenu);
-        int userInput = employeeTransactionMenu.getValidOption();
+        int userInput = 0;
         do {
+            System.out.println(employeeTransactionMenu);
+            userInput = employeeTransactionMenu.getValidOption();
             switch (userInput){
                 case 1: // print all transactions
                     printAllTransactions(transactionController);
@@ -268,7 +268,7 @@ public class EmployeeMenu {
         String password = Util.readNewPassword();
         String firstName = Util.readLine("What is your first name?: ");
         String lastName = Util.readLine("What is your last name?: ");
-        double salary = Util.readDouble("What is your salary?: ");
+        double salary = Util.readDouble("What is your annual salary?: ");
         String residentalArea = Util.readLine("Where do you live?: ");
         String occupation = Util.readLine("What is your occupation?: ");
         try{
@@ -325,14 +325,14 @@ public class EmployeeMenu {
     }
     // goes to a specific customers customer account requests
     public void specificCustomerAccountRequest(AccountRequestController accountRequestController) throws Exception {
-        String SSN = Util.readLine("Type in the customers request you want to look at: ");
+        String SSN = Util.readLine("Type in the SSN of the customer you want to look at: ");
         CustomerAccountRequest CAR = accountRequestController.getCustomerAccountRequestBySSN(SSN); // CAR = Customer Account Request
         System.out.println(CAR.toString());
         approveDenyCustomerAccountRequest(CAR, accountRequestController);
     }
     // goes to a specific customers bank account requests
     public void specificBankBankAccountRequest(AccountRequestController accountRequestController) throws Exception {
-        String SSN = Util.readLine("Type in the customers request you want to look at: ");
+        String SSN = Util.readLine("Type in the SSN of the customer you want to look at: ");
         ArrayList<BankAccountRequest> BARs = accountRequestController.getBankAccountRequestsForSpecificCustomer(SSN); // BARs = Bank Account Requests
         for (BankAccountRequest BAR : BARs){
             System.out.println(BAR.toString());
