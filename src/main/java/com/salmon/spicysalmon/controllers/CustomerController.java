@@ -321,7 +321,7 @@ public class CustomerController {
 
         String message = "All Bank Accounts" + Util.EOL
                 + "--------------------------------------------------" + Util.EOL
-                + "#   Account ID    Account Name      Owner Name" + Util.EOL
+                + "#   Account Number    Account Name      Owner Name" + Util.EOL
                 + "--------------------------------------------------";
         StringBuilder sb = new StringBuilder();
         for (Customer customer : customersList.values()) {
