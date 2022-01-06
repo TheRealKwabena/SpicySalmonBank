@@ -82,7 +82,7 @@ public class CustomerMenu {
             System.out.println(customerController.printAllAccounts(SSN));
             // make sure account id is valid
             do {
-                inputFromUser = Util.readInt("Select the account you want to view (#): ");
+                inputFromUser = Util.readInt("Select the account you want to view by entering the last digit of the account number (#): ");
                 if (inputFromUser > totalNumberOfAccounts || inputFromUser <= 0) {
                     System.out.println("Please type in a valid option.");
                 }
